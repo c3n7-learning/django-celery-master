@@ -46,3 +46,20 @@ tp4.delay()
 >>> task_chain.apply_async()
 <AsyncResult: e14d5975-69a8-4bc6-bbaa-ab3de98c4a68>
 ```
+
+## Run on django to inspect task
+
+celery inspect active
+celery inspect active_queues
+
+## Configuring task prioritization (RabbitMQ)
+
+t2.apply_async(priority=5)
+t1.apply_async(priority=6)
+t3.apply_async(priority=9)
+t2.apply_async(priority=5)
+t1.apply_async(priority=6)
+t3.apply_async(priority=9)
+t2.apply_async(priority=5)
+t1.apply_async(priority=6)
+t3.apply_async(priority=9)
