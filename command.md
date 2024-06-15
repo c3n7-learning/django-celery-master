@@ -54,6 +54,8 @@ celery inspect active_queues
 
 ## Configuring task prioritization (RabbitMQ)
 
+```python
+from dcelery.celery import t1,t2,t3
 t2.apply_async(priority=5)
 t1.apply_async(priority=6)
 t3.apply_async(priority=9)
@@ -63,3 +65,24 @@ t3.apply_async(priority=9)
 t2.apply_async(priority=5)
 t1.apply_async(priority=6)
 t3.apply_async(priority=9)
+```
+
+## 29. Passing arguments and returning results from Celery tasks
+
+- pass args and keyword args
+
+```shell
+>>> from dcelery.celery import t1
+>>> t1.apply_async(args=[5,10], kwargs={"message":"The sum is"})
+>>> result = t1.apply_async(args=[5,15], kwargs={"message":"The sum is"})
+>>> print(result.get())
+The sum is: 20
+```
+
+#### Async Result
+
+- isCompleted(): Checks whether the task associated with AsyncResult is completed
+- isSuccessful(): Checks whether the task completed successfully.
+- get(): Blocks the current thread until the task completes.
+- getResult(): Returns if task has completed successfully.
+- getException(): Returns the exception or error.
