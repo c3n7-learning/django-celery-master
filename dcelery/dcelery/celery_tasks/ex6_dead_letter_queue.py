@@ -1,4 +1,3 @@
-import logging
 from celery import group
 from dcelery.celery_config import app
 
