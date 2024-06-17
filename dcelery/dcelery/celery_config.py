@@ -41,7 +41,8 @@ if os.path.exists(task_folder) and os.path.isdir(task_folder):
             for name in dir(module):
                 obj = getattr(module, name)
                 # if the function name starts with "my_task"
-                if callable(obj) and name.startswith("my_task"):
+                # if callable(obj) and name.startswith("my_task"):
+                if callable(obj):
                     task_modules.append(f"{module_name}.{name}")
 
     print(f"[INFO] Importing tasks {task_modules}")
