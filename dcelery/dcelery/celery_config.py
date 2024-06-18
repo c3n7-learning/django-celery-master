@@ -1,5 +1,4 @@
 import os
-import sentry_sdk
 
 # from sentry_sdk.integrations.celery import CeleryIntegration
 from celery import Celery
@@ -8,22 +7,6 @@ from kombu import Exchange, Queue
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "dcelery.settings")
 app = Celery("dcelery")
 app.config_from_object("django.conf:settings", namespace="CELERY")
-sentry_dsn = "https://69091795bb7e395a73b523ae773401d0@o400371.ingest.us.sentry.io/4507452742500352"
-
-
-sentry_sdk.init(
-    dsn=sentry_dsn,
-    # integrations=[
-    #     CeleryIntegration,
-    # ],
-    # Set traces_sample_rate to 1.0 to capture 100%
-    # of transactions for performance monitoring.
-    traces_sample_rate=1.0,
-    # Set profiles_sample_rate to 1.0 to profile 100%
-    # of sampled transactions.
-    # We recommend adjusting this value in production.
-    profiles_sample_rate=1.0,
-)
 
 
 app.conf.task_queues = [
@@ -53,7 +36,7 @@ task_folder = os.path.join(base_dir, "dcelery", "celery_tasks")
 if os.path.exists(task_folder) and os.path.isdir(task_folder):
     task_modules = []
     for filename in os.listdir(task_folder):
-        if filename.startswith("ex10") and filename.endswith(".py"):
+        if filename.startswith("ex11") and filename.endswith(".py"):
             # -3 to remove the .py
             module_name = f"dcelery.celery_tasks.{filename[:-3]}"
 
