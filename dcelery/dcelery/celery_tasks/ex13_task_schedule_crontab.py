@@ -13,22 +13,24 @@ from dcelery.celery_config import app
 from datetime import timedelta
 from celery.schedules import crontab
 
-app.conf.beat_schedule = {
-    "task1": {
-        "task": "dcelery.celery_tasks.ex13_task_schedule_crontab.task1",
-        "schedule": crontab(minute="0-59/10", hour="15-23", day_of_week="tue"),
-        "kwargs": {"message": "bar"},
-        "args": (1, 2),
-        "options": {
-            "queue": "tasks",
-            "priority": 5,
-        },
-    },
-    "task2": {
-        "task": "dcelery.celery_tasks.ex13_task_schedule_crontab.task2",
-        "schedule": timedelta(seconds=10),
-    },
-}
+# app.conf.beat_schedule = {
+#     "task1": {
+#         "task": "dcelery.celery_tasks.ex13_task_schedule_crontab.task1",
+#         "schedule": crontab(
+#             # minute="0-59/10", hour="15-23", day_of_week="tue"
+#         ),
+#         "kwargs": {"message": "bar"},
+#         "args": (1, 2),
+#         "options": {
+#             "queue": "tasks",
+#             "priority": 5,
+#         },
+#     },
+#     "task2": {
+#         "task": "dcelery.celery_tasks.ex13_task_schedule_crontab.task2",
+#         "schedule": timedelta(seconds=10),
+#     },
+# }
 
 
 @app.task(queue="tasks")
