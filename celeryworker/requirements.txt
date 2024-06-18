@@ -1,2 +1,4 @@
 celery==5.4.0
 redis==5.0.5
+sentry-sdk==2.5.1
+requests
