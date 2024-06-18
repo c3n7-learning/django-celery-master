@@ -53,3 +53,6 @@ if os.path.exists(task_folder) and os.path.isdir(task_folder):
 
     print(f"[INFO] Importing tasks {task_modules}")
     app.autodiscover_tasks(task_modules)
+
+# This looks through our django project and searches for a "tasks.py"
+app.autodiscover_tasks()
